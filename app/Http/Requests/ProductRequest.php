@@ -24,8 +24,8 @@ class ProductRequest extends FormRequest
         return [
         'name'        => 'required|string |min:3| max:20|regex:/^[\pL\s\-]+$/u',
         'price'       => 'required|integer',
+        'image'       => 'required|image',
         'description'       => 'nullable|max:30',
-        'image'       => 'image',
         'categorie_id'       => 'required|exists:categories,id'
         ]; 
     }
@@ -40,6 +40,7 @@ class ProductRequest extends FormRequest
         'name.regex'    => 'The product name can only contain letters, spaces, and hyphens',
         'price.required'    => 'Please enter the product price',
         'price.integer'     => 'The price must be an integer ',
+        'image.required' => 'Please enter a photo ',
         'description.max'   => 'The description must not exceed 30 characters',
         'categorie_id.required' =>'Please select the Categories'
         ]; 
