@@ -16,7 +16,7 @@ Route::middleware('auth')->group(function () {
    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::prefix('/dashboard')->group(function(){
+Route::middleware('admin')->prefix('/dashboard')->group(function(){
 
 Route::get('/', function () {return view('dashboard');})->middleware(['auth', 'admin'])->name('dashboard');
 
@@ -34,8 +34,8 @@ Route::controller(ProductController::class)->name('product.')->group(function(){
       Route::delete('/{id}/destroy','destroy' )->whereNumber('id')->name('delete');
       Route::delete('archive/{id}/destroy','forceDestroy' )->whereNumber('id')->name('forcedelete');
       Route::get('archive/{id}/restore','restore' )->whereNumber('id')->name('restore');
-   });   
-});   
+   });
+});
 
 
 
@@ -44,7 +44,7 @@ Route::controller(CategorieController::class)->name('categorie.')->group(functio
    Route::get('/Categorie/create_categorie','create')->name('create');
    Route::post('/Categorie/create_categorie' , 'add')->name('add_categorie');
    Route::get('/Categorie/archive' ,'archive')->name('archive');
-   
+
    Route::prefix('table_categorie')->group(function () {
       Route::get('/{id}/','show')->whereNumber('id')->name('show');
       Route::get('/{id}/edit','edit')->whereNumber('id')->name('edit');
@@ -52,7 +52,7 @@ Route::controller(CategorieController::class)->name('categorie.')->group(functio
       Route::delete('/{id}/destroy','destroy')->whereNumber('id')->name('delete');
       Route::delete('/archive/{id}/destroy','forceDestroy')->whereNumber('id')->name('forcedelete');
       Route::get('/archive/{id}/restore','restore')->whereNumber('id')->name('restore');
-         });      
+         });
       });
     });
     });
