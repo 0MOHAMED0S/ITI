@@ -1,32 +1,30 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use App\Http\Requests\ProductRequest;
 use Illuminate\Http\Request;
-use app\Models\Product;
-use app\Models\Categorie;
+use App\Models\Product;
+use App\Models\Categorie;
 
 class ProductController extends Controller
 {
     
     public function Products(){
-    
         $Products = Product::get();
-        return view('#',compact('Products'));
+        return view('dashboard.product.allproduct',compact('Products'));
     }  
 
 
 
     public function show($id){
-        $Products = Product::findOrFail($id);
-        return view('#',compact('Products')); 
+        $Product = Product::findOrFail($id);
+        return view('dashboard.product.product_actions.details',compact('Product')); 
     }
     
     
     public function create(){
         $Categories = Categorie::get();
-        return view('#',compact('Categories'));
+        return view('dashboard.product.addproduct',compact('Categories'));
         
     }
     
@@ -46,40 +44,40 @@ class ProductController extends Controller
 
 
 public function edit($id){
-    $Products = Product::findOrFail($id);
+    $Product = Product::findOrFail($id);
     $Categories = Categorie::get();
-    return view('#',compact('Products','Categories'));
+    return view('dashboard.product.product_actions.edit',compact('Product','Categories'));
     
 }
 
 
 public function update($id,Request $r){
-    $Products = Product::findOrFail($id);
-        $Products -> update($r->all());
-        return redirect()->route('#')->with('msg','Update Product is Success');
+    $Product = Product::findOrFail($id);
+        $Product -> update($r->all());
+        return redirect()->route('admin.product.table_product')->with('msg','Update Product is Success');
     }
     
     public function destroy($id){
-        $Products = Product::findOrFail($id);
-        $Products -> delete();
-        return redirect()->route('#')->with('msg','Delete Product is Success');
+        $Product = Product::findOrFail($id);
+        $Product -> delete();
+        return redirect()->route('admin.product.table_product')->with('msg','Delete Product is Success');
    }
    
     public function forceDestroy($id){
-        $Products = Product::withTrashed()->findOrFail($id);
-        $Products ->forceDelete();
-        return redirect()->route('#')->with('msg','Delete Product is Success');
+        $Product = Product::withTrashed()->findOrFail($id);
+        $Product ->forceDelete();
+        return redirect()->route('admin.product.archive')->with('msg','Delete Product is Success');
     }
     
     public function archive(){
         $Products = Product::onlyTrashed()->get();
-        return view('#',compact('Products'));
+        return view('dashboard.product.archive',compact('Products'));
     }
     
     public function restore($id){
         $Products = Product::withTrashed()->findOrFail($id);
         $Products -> restore();
-        return redirect()->route('#')->with('msg','Restore Product is Success');
+        return redirect()->route('admin.product.archive')->with('msg','Restore Product is Success');
     }
 
 }

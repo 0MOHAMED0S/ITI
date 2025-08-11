@@ -26,7 +26,7 @@ class ProductRequest extends FormRequest
         'price'       => 'required|integer',
         'description'       => 'nullable|max:30',
         'image'       => 'image',
-        'Categorie_id'       => 'required',
+        'categorie_id'       => 'required|exists:categories,id'
         ]; 
     }
 
@@ -40,7 +40,8 @@ class ProductRequest extends FormRequest
         'name.regex'    => 'The product name can only contain letters, spaces, and hyphens',
         'price.required'    => 'Please enter the product price',
         'price.integer'     => 'The price must be an integer ',
-        'description.max'   => 'The description must not exceed 30 characters'
+        'description.max'   => 'The description must not exceed 30 characters',
+        'categorie_id.required' =>'Please select the Categories'
         ]; 
     }
 }

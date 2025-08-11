@@ -9,20 +9,20 @@ Route::get('/', function () {
     return view('welcome');
 })->name('home');
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'admin'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+   Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+   Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+   Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+Route::prefix('/dashboard')->group(function(){
+
+Route::get('/', function () {return view('dashboard');})->middleware(['auth', 'admin'])->name('dashboard');
 
 Route::prefix('/admin')->name('admin.')->group(function(){
 Route::controller(ProductController::class)->name('product.')->group(function(){
-   Route::get('/Product/','Products')->name('table_produect');
+   Route::get('/Product/','Products')->name('table_product');
    Route::get('/Product/create_product','create')->name('create');
    Route::post('/Product/create_product' ,'add')->name('add');
    Route::get('/Product/archive' ,'archive')->name('archive');
@@ -39,14 +39,14 @@ Route::controller(ProductController::class)->name('product.')->group(function(){
 
 
 
-Route::controller(CategorieController::class)->name('category.')->group(function(){
-   Route::get('/Categorie/table_categorie','categorys')->name('table_categorie');
-   Route::get('/Categorie/create_categorie','create')->name('create_categorie');
-   Route::post('/Categorie/create_categorie' , 'add_categorie')->name('add_categorie');
+Route::controller(CategorieController::class)->name('categorie.')->group(function(){
+   Route::get('/Categorie/table_categorie','categorie')->name('table_categorie');
+   Route::get('/Categorie/create_categorie','create')->name('create');
+   Route::post('/Categorie/create_categorie' , 'add')->name('add_categorie');
    Route::get('/Categorie/archive' ,'archive')->name('archive');
    
    Route::prefix('table_categorie')->group(function () {
-      Route::get('/{id}/','show')->whereNumber('id')->name('details');
+      Route::get('/{id}/','show')->whereNumber('id')->name('show');
       Route::get('/{id}/edit','edit')->whereNumber('id')->name('edit');
       Route::put('/{id}/updete','update')->whereNumber('id')->name('update');
       Route::delete('/{id}/destroy','destroy')->whereNumber('id')->name('delete');
@@ -54,6 +54,7 @@ Route::controller(CategorieController::class)->name('category.')->group(function
       Route::get('/archive/{id}/restore','restore')->whereNumber('id')->name('restore');
          });      
       });
+    });
     });
 
 
