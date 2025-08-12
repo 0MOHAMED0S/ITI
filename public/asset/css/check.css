@@ -1,0 +1,103 @@
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+        :root {
+            --font-main: "Inter", sans-serif;
+            --colo-primary: #db4444;
+            --colo-dark-1: #000000;
+            --colo-dark-2: #7d8184;
+            --colo-white-1: #ffffff;
+            --colo-white-2: #dedcdc;
+            --color-green: #00d656;
+        }
+
+        * {
+            padding: 0px;
+            margin: 0px;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 10px;
+            /* 1 rem 10px */
+        }
+
+        body {
+            font-family: var(--font-main);
+            font-size: 1.6rem;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        .container {
+            max-width: 114rem;
+            margin: 0 auto;
+            padding: 0rem 1rem;
+        }
+
+        .w-6 {
+            width: 2rem;
+            height: 2rem;
+        }
+
+        .h-6 {
+            fill: rgb(239, 140, 1);
+        }
+
+        #icon {
+            font-size: 32px !important;
+            color: black;
+        }
+
+
+        /* body {
+            background-color: #fff;
+            font-family: Arial, sans-serif;
+        } */
+
+        .checkout-container {
+            padding: 40px 0;
+        }
+
+        .form-control {
+            border-radius: 5px;
+            padding: 10px;
+        }
+
+        .order-summary {
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 50px;
+        }
+
+        .order-summary img {
+            width: 40px;
+            height: 40px;
+            margin-right: 10px;
+        }
+
+        .btn-danger {
+            background-color: #d9534f;
+            border: none;
+        }
+
+        .btn-danger:hover {
+            background-color: #c9302c;
+        }
+
+
+
+        .payment-icons img {
+            width: 40px;
+            margin: 5px;
+        }
+
+        a {
+            text-decoration: none;
+        }

@@ -1,13 +1,43 @@
 <?php
 
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategorieController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('home');
+
+
+
+      Route::get('/',function(){return view('welcome');})->name('home.d');
+      Route::get('/home', [ProductController::class,'allproducts'])->name('home');
+      Route::get('/contact',function(){
+      return view('wepsite.contact');
+      })->name('contact');
+      Route::get('/about',function(){
+      return view('wepsite.about');
+      })->name('about');
+      
+      Route::get('/allproduct',function(){
+      return view('wepsite.product.product');
+      })->name('product');
+     
+      
+      Route::post('/cart/add/{id}', [CartController::class, 'add'])->name('cart.add');
+      Route::get('/cart', [CartController::class, 'index'])->name('cart');
+      Route::post('/cart/update/{id}', [CartController::class, 'update'])->name('cart.update');
+      Route::delete('/cart/remove/{id}', [CartController::class, 'remove'])->name('cart.remove');
+      
+      
+      Route::post('/checkout', [OrderController::class, 'checkout'])->name('order.checkout');
+      Route::get('/order', [OrderController::class, 'index'])->name('order');
+            
+            Route::get('/check_out',function(){
+            return view('wepsite.product.check_out');
+            })->name('check_out');
+
+
 
 
 Route::middleware('auth')->group(function () {
@@ -37,8 +67,6 @@ Route::controller(ProductController::class)->name('product.')->group(function(){
    });
 });
 
-
-
 Route::controller(CategorieController::class)->name('categorie.')->group(function(){
    Route::get('/categorie/table_categorie','categorie')->name('table_categorie');
    Route::get('/categorie/create_categorie','create')->name('create');
@@ -58,4 +86,8 @@ Route::controller(CategorieController::class)->name('categorie.')->group(functio
     });
 
 
+
+
+
+    
 require __DIR__.'/auth.php';

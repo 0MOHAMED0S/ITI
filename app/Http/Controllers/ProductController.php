@@ -13,6 +13,10 @@ class ProductController extends Controller
         $Products = Product::get();
         return view('dashboard.product.allproduct',compact('Products'));
     }  
+    public function allproducts(){
+        $Products = Product::get();
+        return view('wepsite.index',compact('Products'));
+    }  
 
 
 
