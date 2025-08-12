@@ -1,0 +1,219 @@
+/* Importing a Google Font for better typography */
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f4f4f4;
+    direction: ltr;
+    text-align: left;
+}
+
+.container {
+    display: flex;
+    width: 900px;
+    height: 600px;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    overflow: hidden;
+    flex-direction: row;
+}
+
+.left-panel {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f0f0f0;
+}
+
+.panel-image {
+    max-width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.right-panel {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.form-container {
+    width: 80%;
+    max-width: 400px;
+    text-align: left;
+}
+
+h1 {
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+p {
+    color: #777;
+    margin-bottom: 25px;
+}
+
+.input-group {
+    margin-bottom: 20px;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+    box-sizing: border-box;
+}
+
+/* تنسيق زر "Log In" الجديد */
+.log-in-btn {
+    padding: 15px 40px;
+    background-color: #d63031;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.log-in-btn:hover {
+    background-color: #c02a2b;
+}
+
+/* تنسيق زر "Create Account" */
+.create-account-btn {
+    width: 100%;
+    padding: 15px;
+    background-color: #d63031;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.create-account-btn:hover {
+    background-color: #c02a2b;
+}
+
+.separator {
+    text-align: center;
+    margin: 25px 0;
+    position: relative;
+    color: #aaa;
+}
+
+.separator span {
+    background: #fff;
+    padding: 0 10px;
+    position: relative;
+    z-index: 1;
+}
+
+.separator::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: #e0e0e0;
+    z-index: 0;
+}
+
+.google-signup-btn {
+    width: 100%;
+    padding: 10px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+    text-decoration: none;
+    color: #555;
+}
+
+.google-signup-btn:hover {
+    background-color: #f7f7f7;
+}
+
+.google-logo {
+    width: 24px;
+    height: 24px;
+    margin-right: 10px;
+}
+
+/* تنسيق روابط تسجيل الدخول/الاشتراك */
+.login-link, .signup-link {
+    text-align: center;
+    margin-top: 20px;
+    color: #555;
+}
+
+.login-link a, .signup-link a {
+    color: #d63031;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.login-link a:hover, .signup-link a:hover {
+    text-decoration: underline;
+}
+
+/* تنسيق زر "Forgot Password?" الجديد */
+.action-buttons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.forgot-password {
+    color: #555;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.forgot-password:hover {
+    text-decoration: underline;
+}
+
+
+/* Media Queries for responsiveness */
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+        width: 100%;
+        height: auto;
+        box-shadow: none;
+        border-radius: 0;
+    }
+
+    .left-panel {
+        display: none;
+    }
+
+    .right-panel {
+        padding: 40px 20px;
+    }
+
+    .form-container {
+        width: 100%;
+    }
+}

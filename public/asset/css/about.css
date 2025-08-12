@@ -1,0 +1,355 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+/* General styles */
+
+:root {
+    --font-main: "Inter", sans-serif;
+    --colo-primary: #db4444;
+    --colo-dark-1: #000000;
+    --colo-dark-2: #7d8184;
+    --colo-white-1: #ffffff;
+    --colo-white-2: #dedcdc;
+    --color-green: #00d656;
+}
+
+* {
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 10px;
+    /* 1 rem 10px */
+}
+
+body {
+    font-family: var(--font-main);
+    font-size: 1.6rem;
+}
+
+a {
+    text-decoration: none;
+}
+
+ul {
+    list-style: none;
+}
+
+.container {
+    max-width: 114rem;
+    margin: 0 auto;
+    padding: 0rem 1rem;
+}
+
+.w-6 {
+    width: 2rem;
+    height: 2rem;
+}
+
+.h-6 {
+    fill: rgb(239, 140, 1);
+}
+
+#icon {
+    font-size: 32px !important;
+    color: black;
+}
+
+/* top_nav */
+.top_nav {
+    width: 100%;
+    height: 4rem;
+    background-color: var(--colo-dark-1);
+}
+
+.top_nav_container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.top_nav_wrapper {
+    display: flex;
+    color: var(--colo-white-1);
+}
+
+.tap_nav_p {
+    font-size: 1.4rem;
+    font-weight: 400;
+}
+
+.top_nav_link {
+    margin-left: 1rem;
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: var(--colo-white-1);
+}
+
+/* navbaar */
+nav {
+    width: 100%;
+
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 0.5px solid black;
+    padding-bottom: 20px;
+}
+
+nav .nav-content {
+    max-width: 1400px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+nav .menu ul {
+    display: flex;
+    gap: 40px;
+}
+
+nav .menu ul li {
+    list-style: none;
+}
+
+nav .menu ul li a {
+    text-decoration: none;
+    color: black;
+}
+
+nav .menu ul li a:hover {
+    text-decoration: underline;
+    color: black;
+}
+
+nav .items {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 24px;
+}
+
+nav .items .search {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    background: #F5F5F5;
+    padding: 5px 15px;
+}
+
+nav .items .search .srch {
+    padding: 10px;
+    background: none;
+    border: none;
+}
+
+nav .items .items-icons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 24px;
+}
+
+header {
+    padding: 20px 50px;
+}
+
+div a {
+    margin-right: 20px;
+    text-decoration: none;
+    color: #333;
+}
+
+/* Story Section */
+.story-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 50px;
+}
+
+.story-content {
+    flex-basis: 50%;
+    padding-right: 50px;
+}
+
+.story-image {
+    flex-basis: 50%;
+}
+
+.story-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 10px;
+}
+
+/* Stats Section */
+.stats-section {
+    display: flex;
+    justify-content: space-around;
+    padding: 50px;
+    background-color: #f9f9f9;
+}
+
+.stat-box {
+    text-align: center;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    flex: 1;
+    margin: 0 10px;
+}
+
+.stat-box.featured {
+    background-color: #e91e63;
+    color: #fff;
+}
+
+.stat-box .icon {
+    font-size: 2em;
+    margin-bottom: 10px;
+}
+
+.stat-box h3 {
+    font-size: 2.5em;
+    margin: 0;
+}
+
+.stat-box p {
+    margin: 5px 0 0 0;
+    font-size: 0.9em;
+    color: #777;
+}
+
+.stat-box.featured p {
+    color: #fff;
+}
+
+/* Team Section */
+.team-section {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    padding: 50px;
+}
+
+.team-member {
+    margin: 0 20px;
+}
+
+.team-member img {
+    width: 250px;
+    /* Set a fixed width */
+    height: 250px;
+    /* Set a fixed height, equal to the width for a square */
+    object-fit: contain;
+    /* Ensures the entire image is visible within the square */
+    border-radius: 0;
+    /* Remove the circular border */
+}
+
+/* New styles for social links */
+.team-member .social-links {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+    gap: 10px;
+    /* Added spacing between icons */
+}
+
+.team-member .social-links a {
+    text-decoration: none;
+    color: #333;
+}
+
+.team-member .social-links a i {
+    font-size: 1.5em;
+    /* Icon size */
+    color: #000;
+}
+
+.team-member .social-links a:hover i {
+    color: #e91e63;
+    /* Hover effect */
+}
+
+/* Features Section */
+.features-section {
+    display: flex;
+    justify-content: space-around;
+    padding: 50px;
+    background-color: #f9f9f9;
+}
+
+.feature-box {
+    text-align: center;
+    flex: 1;
+    margin: 0 10px;
+}
+
+.feature-box .icon {
+    font-size: 3em;
+    margin-bottom: 10px;
+    color: #e91e63;
+}
+
+.feature-box h4 {
+    margin-top: 0;
+    font-size: 1.1em;
+}
+
+.feature-box p {
+    margin: 5px 0 0 0;
+    color: #777;
+}
+
+/* footer */
+.footer {
+    margin-top: 10rem;
+    background-color: var(--colo-dark-1);
+}
+
+.footer_container {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+    grid-gap: 3rem;
+    padding: 5rem 0rem;
+    color: var(--colo-white-1);
+}
+
+.footer_logo {
+    font-size: 3rem;
+    color: var(--colo-white-1);
+    font-weight: 700;
+}
+
+.footer_p {
+    margin-top: 1.2rem;
+}
+
+.footer_item_titl {
+    margin-bottom: 1.2rem;
+}
+
+.footer_list_item {
+    margin: 0.5rem 0rem;
+}
+
+.footer_bottom_container {
+    width: 100%;
+    text-align: center;
+}
+
+.footer_copy {
+    color: var(--colo-dark-2);
+    padding: 1.5rem 0rem;
+}
