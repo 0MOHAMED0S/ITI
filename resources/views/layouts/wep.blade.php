@@ -59,12 +59,12 @@
               onclick="event.preventDefault();
                 this.closest('form').submit();"> {{ __('LogOut') }}
                       </x-responsive-nav-link>
-                    </form>        
+                    </form>
                   </h4>
               </div>
       </div>
     </div>
-    
+
   </nav>
   <!-- <span class="hamburger">
     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
@@ -93,11 +93,11 @@
       </li>
     </ul>
   </nav> -->
-  
-  
+
+
   @yield('content')
-  
-  
+
+
   <!-- Footer -->
 
   <footer class="footer">
@@ -146,7 +146,7 @@
     </div>
   </footer>
 
-  <script src="js/script.js"></script>
+  <script src="{{asset('asset/js/script.js')}}"></script>
   <!-- Swiper JS -->
   <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
   <script src="{{asset('asset/js/app.js') }}"></script>
