@@ -44,7 +44,7 @@ Route::controller(CategorieController::class)->name('categorie.')->group(functio
    Route::get('/categorie/create_categorie','create')->name('create');
    Route::post('/categorie/create_categorie' , 'add')->name('add_categorie');
    Route::get('/categorie/archive' ,'archive')->name('archive');
-   
+
    Route::prefix('table_categorie')->group(function () {
       Route::get('/{id}/','show')->whereNumber('id')->name('show');
       Route::get('/{id}/edit','edit')->whereNumber('id')->name('edit');
