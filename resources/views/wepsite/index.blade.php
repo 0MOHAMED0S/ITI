@@ -1,18 +1,18 @@
 @extends('Layouts.wep')
 @section('content')
 
-  <header class="header">
+
     <div class="container header_container">
       <article class="header_filter">
-        <a href="index.html#" class="header_filter_link">Woman’s Fashion</a>
-        <a href="index.html#" class="header_filter_link">Men’s Fashion</a>
-        <a href="index.html#" class="header_filter_link">Electronics</a>
-        <a href="index.html#" class="header_filter_link">Home & Lifestyle</a>
-        <a href="index.html#" class="header_filter_link">Medicine</a>
-        <a href="index.html#" class="header_filter_link">Sports & Outdoor</a>
-        <a href="index.html#" class="header_filter_link">Baby’s & Toys</a>
-        <a href="index.html#" class="header_filter_link">Groceries & Pets</a>
-        <a href="index.html#" class="header_filter_link">Health & Beauty</a>
+        <a href="#" class="header_filter_link">Woman’s Fashion</a>
+        <a href="#" class="header_filter_link">Men’s Fashion</a>
+        <a href="#" class="header_filter_link">Electronics</a>
+        <a href="#" class="header_filter_link">Home & Lifestyle</a>
+        <a href="#" class="header_filter_link">Medicine</a>
+        <a href="#" class="header_filter_link">Sports & Outdoor</a>
+        <a href="#" class="header_filter_link">Baby’s & Toys</a>
+        <a href="#" class="header_filter_link">Groceries & Pets</a>
+        <a href="#" class="header_filter_link">Health & Beauty</a>
       </article>
       <article class="swiper bannerSwiper">
         <div class="swiper-wrapper">
@@ -32,7 +32,7 @@
         <div class="swiper-pagination"></div>
       </article>
     </div>
-  </header>
+ 
 
   <section class="section">
     <div class="container" id="containerbox">
@@ -84,7 +84,7 @@
 
                 <form action="{{ route('cart.add', $Product->id) }}" method="POST">
                 @csrf
-                <button type="submit" class="btn btn-primary">Add to Cart</button>
+                <button type="submit" class="add_to_cart">Add to Cart</button>
                 </form>
 
               </div>
@@ -154,13 +154,11 @@
       <!-- Swiper -->
       <div class="swiper mySwiper">
         <div class="swiper-wrapper">
-
-          
           @foreach ($Products as $product )
           <div class="swiper-slide">
             <div class="card">
               <div class="card_top">
-                <img src="{{asset('asset/image/items/item-5.png')}}" alt="" class="card_img" />
+                <img src="{{asset('storage/Product/'.$product->image)}}" alt="" class="card_img" />
                 <div class="card_top_icons">
 
 
@@ -181,8 +179,8 @@
               </div>
               
               <div class="card_body">
-                <h3 class="card_title">The north coat</h3>
-                <p class="card_price">$120</p>
+                <h3 class="card_title">{{ $product->name }}</h3>
+                <p class="card_price">${{ $product->price }}</p>
                 <div class="card_ratings">
                   <div class="card_stars">
                     @for ($i=1;$i<=5;++$i)
@@ -202,7 +200,7 @@
       </div>
 
       <div class="container_btn">
-        <a href="index.html#" class="container_btn_a">VIEW ALL PRODUCTS</a>
+        <a href="#" class="container_btn_a">VIEW ALL PRODUCTS</a>
       </div>
     </div>
   </section>
@@ -238,45 +236,54 @@
       </div>
       <div class="products">
 
-        <div class="card">
-          <div class="card_top">
-            <img src="{{asset('asset/image/items/item-9.png') }}" alt="" class="card_img" />
-            <div class="card_top_icons">
+          @foreach ($Products as $product )
+          <div class="swiper-slide">
+            
+            <div class="card">
+              <div class="card_top">
+                <img src="{{asset('storage/Product/'.$product->image)}}" alt="" class="card_img" />
+                <div class="card_top_icons">
 
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                stroke="currentColor" class="card_top_icon">
-                <path stroke-linecap="round" stroke-linejoin="round"
-                  d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
-              </svg>
 
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                stroke="currentColor" class="card_top_icon">
-                <path stroke-linecap="round" stroke-linejoin="round"
-                  d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" />
-                <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-              </svg>
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                    stroke="currentColor" class="card_top_icon">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                      d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
+                  </svg>
 
-            </div>
-          </div>
-          <div class="card_body">
-            <h3 class="card_title">HAVIT HV-G92 Gamepad</h3>
-            <p class="card_price">$120</p>
-            <div class="card_ratings">
-              <div class="card_stars">
-                @for ($i=1;$i<=5;++$i)
-                <i style="color: rgb(255, 217, 0)" class="fa-solid fa-star"></i>
-                @endfor
-
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                    stroke="currentColor" class="card_top_icon">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                      d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" />
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                  </svg>
+                  
+                </div>
               </div>
-              <p class="card_rating_numbers">(88)</p>
+              
+              <div class="card_body">
+                <h3 class="card_title">{{ $product->name }}</h3>
+                <p class="card_price">${{ $product->price }}</p>
+                <div class="card_ratings">
+                  <div class="card_stars">
+                    @for ($i=1;$i<=5;++$i)
+                    <i style="color: rgb(255, 217, 0)" class="fa-solid fa-star"></i>
+                    </svg>
+                    @endfor
+                  </div>
+                  <p class="card_rating_numbers">(88)</p>
+                </div>
+              </div>
             </div>
-          </div>
+          </div> 
+          @endforeach
+          <br>
+          
+          
         </div>
-
-      <div class="container_btn">
-        <a href="index.html#" class="container_btn_a">VIEW ALL PRODUCTS</a>
-      </div>
-    </div>
+        <div class="container_btn">
+          <a href="#" class="container_btn_a">VIEW ALL PRODUCTS</a>
+        </div>
   </section>
 
 

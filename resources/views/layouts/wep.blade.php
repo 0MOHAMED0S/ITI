@@ -10,15 +10,13 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
   <!-- Link Swiper's CSS -->
+  <title>Home - Exclusive E-Commerce Website</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
   <link rel="stylesheet" href="{{ asset('asset/css/about.css') }}">
   <link rel="stylesheet" href="{{asset('asset/css/contact.css')}}">
   <link rel="stylesheet" href="{{asset('asset/css/check.css')}}">
   <link rel="stylesheet" href="{{asset('asset/css/product.css')}}">
   <link rel="stylesheet" href="{{asset('asset/css/styles.css')}}">
-     <link href="{{asset('assets/css/style.min.css')}}" rel="stylesheet" />
-    
-  <title>Home - Exclusive E-Commerce Website</title>
 </head>
 
 <body>
@@ -40,10 +38,9 @@
       <div class="menu">
         <ul>
           <li><a href="{{ route('home') }}"><h2>Home</h2></a></li>
-          <li><a href="{{ route('product') }}"><h2>All Product</h2></a></li>
           <li><a href="{{ route('contact') }}"><h2>contact</h2></a></li>
-          <li><a href="about.html"><h2>About</h2></a></li>
-          <li><a href="create.html"><h2>Sign Up</h2></a></li>
+          <li><a href="{{ route('about') }}"><h2>About</h2></a></li>
+          {{-- <li><a href="create.html"><h2>Sign Up</h2></a></li> --}}
         </ul>
       </div>
       <div class="items">
@@ -55,14 +52,16 @@
           <div class="wishlist"><a href="wishlist.html"><i id="icon" class="fa fa-heart-o"></i></a></div>
           <div class="cart"><a href="{{route('cart') }}"><i id="icon" class="fa fa-shopping-cart"></i></a></div>
           <div class="account"><a href="Account.html"><i id="icon" class="fas fa-user"></i></a></div>
-                <form method="POST" action="{{ route('logout') }}">
-                    @csrf
-                    <x-responsive-nav-link :href="route('logout')"
-                            onclick="event.preventDefault();
-                                        this.closest('form').submit();">
-                        {{ __('Log Out') }}
-                    </x-responsive-nav-link>
-                </form>        </div>
+          <h4 style="font-size: 20px">
+            <form method="POST" action="{{ route('logout') }}">
+              @csrf
+              <x-responsive-nav-link :href="route('logout')"
+              onclick="event.preventDefault();
+                this.closest('form').submit();"> {{ __('LogOut') }}
+                      </x-responsive-nav-link>
+                    </form>        
+                  </h4>
+              </div>
       </div>
     </div>
     

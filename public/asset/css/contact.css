@@ -94,6 +94,74 @@ ul {
 
 /* Header */
 
+nav {
+    width: 100%;
+    background-color: white;
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 0.5px solid black;
+    padding-bottom: 20px;
+}
+
+nav .nav-content {
+    max-width: 1400px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+nav .menu ul {
+    display: flex;
+    gap: 40px;
+}
+
+nav .menu ul li {
+    list-style: none;
+}
+
+nav .menu ul li a {
+    text-decoration: none;
+    color: black;
+    font-size: 1.2rem;
+}
+
+nav .menu ul li a:hover {
+    text-decoration: underline;
+    color: black;
+}
+
+nav .items {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 24px;
+}
+
+nav .items .search {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    background: #F5F5F5;
+    padding: 5px 15px;
+}
+
+nav .items .search .srch {
+    padding: 10px;
+    background: none;
+    border: none;
+}
+
+nav .items .items-icons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 24px;
+}
+
 /* Breadcrumb */
 .breadcrumb {
     font-size: 14px;

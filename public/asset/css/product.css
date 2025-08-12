@@ -54,6 +54,147 @@ ul {
     color: black;
 }
 
+/* top_nav */
+.top_nav {
+    width: 100%;
+    height: 4rem;
+    background-color: var(--colo-dark-1);
+}
+
+.top_nav_container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.top_nav_wrapper {
+    display: flex;
+    color: var(--colo-white-1);
+}
+
+.tap_nav_p {
+    font-size: 1.4rem;
+    font-weight: 400;
+}
+
+.top_nav_link {
+    margin-left: 1rem;
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: var(--colo-white-1);
+}
+
+/* navbaar */
+nav {
+    width: 100%;
+
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 0.5px solid black;
+    padding-bottom: 20px;
+}
+
+nav .nav-content {
+    max-width: 1400px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+nav .menu ul {
+    display: flex;
+    gap: 40px;
+}
+
+nav .menu ul li {
+    list-style: none;
+}
+
+nav .menu ul li a {
+    text-decoration: none;
+    color: black;
+}
+
+nav .menu ul li a:hover {
+    text-decoration: underline;
+    color: black;
+}
+
+nav .items {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 24px;
+}
+
+nav .items .search {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    background: #F5F5F5;
+    padding: 5px 15px;
+}
+
+nav .items .search .srch {
+    padding: 10px;
+    background: none;
+    border: none;
+}
+
+nav .items .items-icons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 24px;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* Header */
+.main-header {
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.top-bar {
+    background-color: #000;
+    color: #fff;
+    text-align: center;
+    padding: 10px 0;
+    font-size: 14px;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 5%;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.nav-links {
+    display: flex;
+    gap: 25px;
+}
+
+.nav-icons {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
 
 .search-box {
     position: relative;
@@ -80,6 +221,17 @@ ul {
     max-width: 1200px;
     margin: 20px auto;
     padding: 0 15px;
+}
+
+.breadcrumbs {
+    font-size: 14px;
+    color: #777;
+    margin-bottom: 20px;
+}
+
+.breadcrumbs .current-page {
+    color: #000;
+    font-weight: bold;
 }
 
 .product-details-container {
@@ -335,6 +487,7 @@ ul {
 
 .card-actions i {
     font-size: 18px;
+    /* تصغير حجم الأيقونات */
     cursor: pointer;
     margin-left: 5px;
 }
@@ -343,10 +496,12 @@ ul {
     background-color: #000;
     color: #fff;
     padding: 8px 12px;
+    /* تقليل حجم الزر */
     border: none;
     border-radius: 4px;
     cursor: pointer;
     font-size: 14px;
+    /* تصغير حجم الخط */
     display: none;
     margin-top: 5px;
 }
@@ -357,16 +512,19 @@ ul {
 
 .card-info {
     text-align: right;
+    /* محاذاة النص لليمين داخل معلومات البطاقة */
 }
 
 .card-info h3 {
     font-size: 16px;
+    /* تصغير حجم عنوان المنتج */
     margin-bottom: 5px;
     font-weight: bold;
 }
 
 .card-info .price {
     font-size: 14px;
+    /* تصغير حجم السعر */
     margin-bottom: 3px;
 }
 
@@ -379,10 +537,54 @@ ul {
 .card-info .rating {
     color: #ffad33;
     font-size: 12px;
-    
+    /* تصغير حجم أيقونات النجوم */
 }
 
 .card-info .rating span {
     color: #777;
     margin-right: 5px;
+}
+
+/* Footer Section */
+/* footer */
+.footer {
+    margin-top: 10rem;
+    background-color: var(--colo-dark-1);
+}
+
+.footer_container {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+    grid-gap: 3rem;
+    padding: 5rem 0rem;
+    color: var(--colo-white-1);
+}
+
+.footer_logo {
+    font-size: 3rem;
+    color: var(--colo-white-1);
+    font-weight: 700;
+}
+
+.footer_p {
+    margin-top: 1.2rem;
+}
+
+.footer_item_titl {
+    margin-bottom: 1.2rem;
+}
+
+.footer_list_item {
+    margin: 0.5rem 0rem;
+}
+
+.footer_bottom_container {
+    width: 100%;
+    text-align: center;
+}
+
+.footer_copy {
+    color: var(--colo-dark-2);
+    padding: 1.5rem 0rem;
 }

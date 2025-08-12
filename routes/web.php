@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Route;
 
 
 
-      Route::get('/',function(){return view('welcome');})->name('home.d');
+      Route::get('/',function(){return view('welcome');})->name('dash');
       Route::get('/home', [ProductController::class,'allproducts'])->name('home');
       Route::get('/contact',function(){
       return view('wepsite.contact');
