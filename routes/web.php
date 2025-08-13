@@ -57,6 +57,10 @@ Route::middleware('admin')->prefix('/dashboard')->group(function(){
 Route::get('/', function () {return view('dashboard');})->middleware(['auth', 'admin'])->name('dashboard');
 
 Route::prefix('/admin')->name('admin.')->group(function(){
+
+Route::get('orders', [OrderController::class, 'show'])->name('orders');
+Route::delete('/admin/orders/{id}', [OrderController::class, 'destroy'])->name('destroy');
+
 Route::controller(ProductController::class)->name('product.')->group(function(){
    Route::get('/product/','products')->name('table_product');
    Route::get('/product/create_product','create')->name('create');

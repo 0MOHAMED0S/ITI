@@ -41,4 +41,16 @@ class OrderController extends Controller
         $orders = Order::where('user_id', Auth::id())->get();
         return view('wepsite.product.order', compact('orders'));
     }
+public function show()
+{
+    $orders = Order::with('user')->orderBy('created_at', 'desc')->get();
+    return view('dashboard.orders.index', compact('orders'));
+}
+public function destroy($id)
+{
+    $order = Order::findOrFail($id);
+    $order->delete();
+    return redirect()->route('admin.orders')->with('success', 'Order deleted successfully!');
+}
+
 }

@@ -16,7 +16,12 @@
                         {{ __('Dashboard') }}
                     </x-nav-link>
                 </div>
-
+                
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link :href="route('admin.orders')" :active="request()->routeIs('admin.orders')">
+                        {{ __('Orders') }}
+                    </x-nav-link>
+                </div>
 
             <div class="hidden sm:flex sm:items-center sm:ms-6">
                 <x-dropdown align="right" width="48">
@@ -137,6 +142,7 @@
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
         </div>
+        
 
         <!-- Responsive Settings Options -->
         <div class="pt-4 pb-1 border-t border-gray-200">

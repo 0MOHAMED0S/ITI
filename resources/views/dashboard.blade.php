@@ -10,9 +10,12 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900">
-                    {{ __("You're logged in!") }}
-                </div>
+                <div class="p-6 text-gray-900 text-xl">
+               {{ __("Welcome back to your dashboard! We're glad to have you here. Let's make today productive") }}
+            {{-- <div class="mt-4 ex justify-center">
+                <img src="{{ asset('assets/images/ra3d.png') }}" alt="Ra3d Team" class="w-51 h-auto">
+            </div> --}}
+            </div>
             </div>
         </div>
     </div>
