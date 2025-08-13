@@ -113,14 +113,18 @@
       </div>
       <div class="categories">
         
-         @foreach( $Categories as $Categorie )
+         {{-- @foreach( $Categories as $Categorie )
+         <img src="{{asset('asset/image/icons/computer.png')}}" alt="" class="category_icon" />
+         <p class="category_name">{{ $Categorie->name }}</p>
+         @endforeach --}}
+         
+        @foreach($Categories as $category)
         <div class="category">
-          {{-- <img src="{{asset('asset/image/icons/computer.png')}}" alt="" class="category_icon" /> --}}
-          <p class="category_name">{{ $Categorie->name }}</p>
-        </div>
+        <a href="{{ route('categorie.details', $category->id) }}" class="btn btn-outline-primary">
+          <p class="category_name">{{ $category->name }}</p>
+        </a>
+      </div>
         @endforeach
-                        
-
 
           {{-- 
 

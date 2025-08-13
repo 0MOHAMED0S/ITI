@@ -17,7 +17,11 @@ class CategorieController extends Controller
     }   
 
 
-            
+     public function details($id){
+    $Categories = Categorie::with('products')->findOrFail($id);
+    return view('wepsite.product.categorie', compact('Categories'));
+    }
+
     public function show($id){
         $Categories = Categorie::find($id);
         return view('dashboard.categorie.categorie_actions.details',compact('Categories')); 

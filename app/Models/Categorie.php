@@ -10,4 +10,8 @@ class Categorie extends Model
      use SoftDeletes;
     protected $table ="Categories";
     protected $fillable =['name'];
+    public function products()
+{
+    return $this->hasMany(Product::class);
+}
 }
