@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategorieController;
+use App\Http\Controllers\FavoriteController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
@@ -25,7 +26,9 @@ use Illuminate\Support\Facades\Route;
       // Route::get('/allproduct',function(){
       // return view('wepsite.product.product');
       // })->name('product');
-     
+      Route::post('/favorites/add/{id}', [FavoriteController::class, 'add'])->name('favorites.add');
+      Route::get('/favorites', [FavoriteController::class, 'index'])->name('favorites');
+      Route::delete('/favorites/remove/{id}', [FavoriteController::class, 'remove'])->name('favorites.remove');
       
       Route::post('/cart/add/{id}', [CartController::class, 'add'])->name('cart.add');
       Route::get('/cart', [CartController::class, 'index'])->name('cart');

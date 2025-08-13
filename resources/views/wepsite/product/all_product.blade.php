@@ -1,131 +1,185 @@
 @extends('Layouts.wep')
 @section('content')
+
 <style>
-/* ===== Swiper Styles ===== */
-.swiper {
+/* ===== Scoped Swiper Section Styles ===== */
+.product-slider-section {
   width: 100%;
-  padding: 20px 0;
+  padding: 50px 0;
+  background-color: #f4f6f8;
 }
 
-.swiper-slide {
-  display: flex;
-  justify-content: center;
+.product-slider-title {
+  text-align: center;
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 30px;
 }
 
-.card {
-  background: #fff;
-  border-radius: 12px;
+/* ===== Product Card ===== */
+.product-slide-card {
+  background: #ffffff;
+  border-radius: 16px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.1);
   overflow: hidden;
-  width: 250px;
-  transition: transform 0.2s ease;
-}
-
-.card:hover {
-  transform: translateY(-5px);
-}
-
-.card_top {
+  width: 240px;
+  transition: 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   position: relative;
 }
 
-.card_img {
-  width: 100%;
-  height: 200px;
-  object-fit: cover;
+.product-slide-card:hover {
+  transform: translateY(-6px);
 }
 
-.card_tag {
+.product-card-top {
+  position: relative;
+}
+
+.product-card-img {
+  width: 100%;
+  height: 190px;
+  object-fit: cover;
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px;
+}
+
+/* Discount Label */
+.product-discount-tag {
   position: absolute;
   top: 10px;
   left: 10px;
-  background: red;
+  background-color: #ff4b5c;
   color: white;
-  font-size: 14px;
-  padding: 4px 8px;
-  border-radius: 4px;
+  font-size: 13px;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-weight: 600;
 }
 
-.card_top_icons {
+/* Favorite Icon */
+.product-fav-icon {
   position: absolute;
   top: 10px;
   right: 10px;
 }
 
-.card_top_icon {
-  width: 24px;
-  height: 24px;
+.product-fav-icon svg {
+  width: 26px;
+  height: 26px;
   color: #ff4b5c;
   cursor: pointer;
+  transition: 0.3s;
 }
 
-.card_body {
+.product-fav-icon svg:hover {
+  transform: scale(1.15);
+}
+
+/* Card Body */
+.product-card-body {
   padding: 15px;
   text-align: center;
 }
 
-.card_title {
-  font-size: 18px;
-  font-weight: bold;
-  margin-bottom: 5px;
+.product-name {
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: #333;
+  height: 40px;
+  overflow: hidden;
 }
 
-.card_price {
-  font-size: 16px;
+.product-price {
+  font-size: 14px;
   color: #28a745;
+  font-weight: bold;
+  margin-bottom: 12px;
+}
+
+/* Button */
+.product-cart-btn {
+  background-color: #ff4b5c;
+  color: white;
+  border: none;
+  padding: 8px 18px;
+  border-radius: 25px;
+  font-size: 13px;
+  cursor: pointer;
+  transition: background 0.3s ease;
   margin-bottom: 10px;
 }
 
-.add_to_cart {
-  background: #ff4b5c;
-  color: white;
-  border: none;
-  padding: 10px 15px;
-  border-radius: 20px;
-  cursor: pointer;
-  transition: background 0.2s ease;
+.product-cart-btn:hover {
+  background-color: #e84352;
 }
 
-.add_to_cart:hover {
-  background: #e84352;
+/* Responsive */
+@media (max-width: 768px) {
+  .product-slide-card {
+    width: 90%;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .product-slide-card {
+    width: 200px;
+  }
 }
 </style>
 
-<!-- Swiper Container -->
-<div class="swiper mySwiper">
-  <div class="swiper-wrapper">
-    @foreach ($Products as $Product)
-      <div class="swiper-slide">
-        <div class="card">
-          <div class="card_top">
-            <a href="{{ route('show.p', $Product->id) }}">
-              <img src="{{ asset('storage/Product/'.$Product->image) }}" alt="" class="card_img" />
-            </a>
-            <div class="card_tag">-40%</div>
-            <div class="card_top_icons">
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" 
-                stroke-width="1.5" stroke="currentColor" class="card_top_icon">
-                <path stroke-linecap="round" stroke-linejoin="round"
-                  d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 
-                  3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
-              </svg>
+<!-- Swiper Product Section -->
+<div class="product-slider-section">
+  <h2 class="product-slider-title">All Products</h2>
+
+  <div class="swiper mySwiper">
+    <div class="swiper-wrapper">
+      @foreach ($Products as $Product)
+        <div class="swiper-slide">
+          <div class="product-slide-card">
+            <div class="product-card-top">
+              <a href="{{ route('show.p', $Product->id) }}">
+                <img src="{{ asset('storage/Product/'.$Product->image) }}" alt="{{ $Product->name }}" class="product-card-img" />
+              </a>
+
+              <div class="product-discount-tag">-40%</div>
+
+              <div class="product-fav-icon">
+                <form action="{{ route('favorites.add', $Product->id) }}" method="POST" id="favoriteForm_{{ $Product->id }}">
+                  @csrf
+                  <button type="button" onclick="toggleFavorite({{ $Product->id }})" style="background: none; border: none;">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none"
+                         viewBox="0 0 24 24" stroke-width="1.5"
+                         stroke="currentColor" id="heartIcon_{{ $Product->id }}">
+                      <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
+                    </svg>
+                  </button>
+                </form>
+              </div>
+            </div>
+
+            <div class="product-card-body">
+              <h3 class="product-name">{{ $Product->name }}</h3>
+              <p class="product-price">{{ $Product->price }} EGP</p>
+
+              <form action="{{ route('cart.add', $Product->id) }}" method="POST">
+                @csrf
+                <button type="submit" class="product-cart-btn">Add to Cart</button>
+              </form>
             </div>
           </div>
-          <div class="card_body">
-            <h3 class="card_title">{{ $Product->name }}</h3>
-            <p class="card_price">${{ $Product->price }}</p>
-            <form action="{{ route('cart.add', $Product->id) }}" method="POST">
-              @csrf
-              <button type="submit" class="add_to_cart">Add to Cart</button>
-            </form>
-          </div>
         </div>
-      </div>
-    @endforeach
+      @endforeach
+    </div>
   </div>
 </div>
 
-<!-- SwiperJS Scripts -->
+<!-- Swiper Scripts -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css" />
 <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
 <script>
@@ -143,5 +197,12 @@
       480: { slidesPerView: 1 }
     }
   });
+
+  function toggleFavorite(productId) {
+    const form = document.getElementById(`favoriteForm_${productId}`);
+    const icon = document.getElementById(`heartIcon_${productId}`);
+    form.submit();
+    icon.style.fill = "#ff4b5c";
+  }
 </script>
 @endsection

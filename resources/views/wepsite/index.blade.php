@@ -56,12 +56,18 @@
                 <a href="{{ route('show.p', $Product->id) }}"><img src="{{asset('storage/Product/'.$Product->image)}}" alt="" class="card_img" /></a>
                 <div class="card_tag">-40%</div>
                 <div class="card_top_icons">
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                    stroke="currentColor" class="card_top_icon">
-                    <path stroke-linecap="round" stroke-linejoin="round"
-                      d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
-                  </svg>
-
+               <form action="{{ route('favorites.add', $Product->id) }}" method="POST" id="favoriteForm_{{ $Product->id }}">
+               @csrf
+                 <button type="button" onclick="toggleFavorite({{ $Product->id }})" style="background: none; border: none; padding: 0;">
+                     <svg xmlns="http://www.w3.org/2000/svg" fill="none"
+                         viewBox="0 0 24 24" stroke-width="1.5"
+                         stroke="currentColor" id="heartIcon_{{ $Product->id }}"
+                         style="width: 30px; height: 30px; cursor: pointer; transition: 0.3s;">
+                         <path stroke-linecap="round" stroke-linejoin="round"
+                             d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
+                     </svg>
+                 </button>
+              </form>
                 </div>
               </div>
               <div class="card_body">
@@ -156,47 +162,48 @@
       <!-- Swiper -->
       <div class="swiper mySwiper">
         <div class="swiper-wrapper">
-          @foreach ($Products as $product )
+          @foreach ($Products as $Product )
           <div class="swiper-slide">
             <div class="card">
               <div class="card_top">
-                <img src="{{asset('storage/Product/'.$product->image)}}" alt="" class="card_img" />
+                <a href="{{ route('show.p', $Product->id) }}"><img src="{{asset('storage/Product/'.$Product->image)}}" alt="" class="card_img" /></a>
+                <div class="card_tag">-40%</div>
                 <div class="card_top_icons">
-
-
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                    stroke="currentColor" class="card_top_icon">
-                    <path stroke-linecap="round" stroke-linejoin="round"
-                      d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
-                  </svg>
-
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                    stroke="currentColor" class="card_top_icon">
-                    <path stroke-linecap="round" stroke-linejoin="round"
-                      d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" />
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                  </svg>
-                  
+               <form action="{{ route('favorites.add', $Product->id) }}" method="POST" id="favoriteForm_{{ $Product->id }}">
+               @csrf
+                 <button type="button" onclick="toggleFavorite({{ $Product->id }})" style="background: none; border: none; padding: 0;">
+                     <svg xmlns="http://www.w3.org/2000/svg" fill="none"
+                         viewBox="0 0 24 24" stroke-width="1.5"
+                         stroke="currentColor" id="heartIcon_{{ $Product->id }}"
+                         style="width: 30px; height: 30px; cursor: pointer; transition: 0.3s;">
+                         <path stroke-linecap="round" stroke-linejoin="round"
+                             d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
+                     </svg>
+                 </button>
+              </form>
                 </div>
               </div>
-              
               <div class="card_body">
-                <h3 class="card_title">{{ $product->name }}</h3>
-                <p class="card_price">${{ $product->price }}</p>
+                <h3 class="card_title">{{ $Product->name }}</h3>
+                <p class="card_price">${{ $Product->price }}</p>
                 <div class="card_ratings">
                   <div class="card_stars">
                     @for ($i=1;$i<=5;++$i)
                     <i style="color: rgb(255, 217, 0)" class="fa-solid fa-star"></i>
-                    </svg>
                     @endfor
                   </div>
                   <p class="card_rating_numbers">(88)</p>
                 </div>
+
+                <form action="{{ route('cart.add', $Product->id) }}" method="POST">
+                @csrf
+                <button type="submit" class="add_to_cart">Add to Cart</button>
+                </form>
+
               </div>
             </div>
           </div> 
           @endforeach
-
         </div>
         <div class="swiper-pagination"></div>
       </div>
@@ -237,44 +244,44 @@
         <p id="demo"></p>
       </div>
       <div class="products">
-
-          @foreach ($Products as $product )
+          @foreach ($Products as $Product )
           <div class="swiper-slide">
-            
             <div class="card">
               <div class="card_top">
-                <img src="{{asset('storage/Product/'.$product->image)}}" alt="" class="card_img" />
+                <a href="{{ route('show.p', $Product->id) }}"><img src="{{asset('storage/Product/'.$Product->image)}}" alt="" class="card_img" /></a>
+                <div class="card_tag">-40%</div>
                 <div class="card_top_icons">
-
-
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                    stroke="currentColor" class="card_top_icon">
-                    <path stroke-linecap="round" stroke-linejoin="round"
-                      d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
-                  </svg>
-
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                    stroke="currentColor" class="card_top_icon">
-                    <path stroke-linecap="round" stroke-linejoin="round"
-                      d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" />
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                  </svg>
-                  
+               <form action="{{ route('favorites.add', $Product->id) }}" method="POST" id="favoriteForm_{{ $Product->id }}">
+               @csrf
+                 <button type="button" onclick="toggleFavorite({{ $Product->id }})" style="background: none; border: none; padding: 0;">
+                     <svg xmlns="http://www.w3.org/2000/svg" fill="none"
+                         viewBox="0 0 24 24" stroke-width="1.5"
+                         stroke="currentColor" id="heartIcon_{{ $Product->id }}"
+                         style="width: 30px; height: 30px; cursor: pointer; transition: 0.3s;">
+                         <path stroke-linecap="round" stroke-linejoin="round"
+                             d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
+                     </svg>
+                 </button>
+              </form>
                 </div>
               </div>
-              
               <div class="card_body">
-                <h3 class="card_title">{{ $product->name }}</h3>
-                <p class="card_price">${{ $product->price }}</p>
+                <h3 class="card_title">{{ $Product->name }}</h3>
+                <p class="card_price">${{ $Product->price }}</p>
                 <div class="card_ratings">
                   <div class="card_stars">
                     @for ($i=1;$i<=5;++$i)
                     <i style="color: rgb(255, 217, 0)" class="fa-solid fa-star"></i>
-                    </svg>
                     @endfor
                   </div>
                   <p class="card_rating_numbers">(88)</p>
                 </div>
+
+                <form action="{{ route('cart.add', $Product->id) }}" method="POST">
+                @csrf
+                <button type="submit" class="add_to_cart">Add to Cart</button>
+                </form>
+
               </div>
             </div>
           </div> 

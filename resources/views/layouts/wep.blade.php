@@ -38,6 +38,7 @@
       <div class="menu">
         <ul>
           <li><a href="{{ route('home') }}"><h2>Home</h2></a></li>
+          <li><a href="{{ route('allproduct') }}"><h2>All Product</h2></a></li>
           <li><a href="{{ route('contact') }}"><h2>contact</h2></a></li>
           <li><a href="{{ route('about') }}"><h2>About</h2></a></li>
           <li><a href="{{ route('order') }}"><h2> Order</h2></a></li>
@@ -49,11 +50,9 @@
           <i id="icon" class="fa fa-search"></i>
         </div>
         <div class="items-icons">
-          <div class="wishlist"><a href="wishlist.html"><i id="icon" class="fa fa-heart-o"></i></a></div>
+          <div class="wishlist"><a href="{{route('favorites') }}"><i id="icon" class="fa fa-heart-o"></i></a></div>
           <div class="cart"><a href="{{route('cart') }}"><i id="icon" class="fa fa-shopping-cart"></i></a></div>
-          <div class="account"><a href="{{ route('profile.edit') }}"><i id="icon" class="fas fa-user">
-            
-          </i></a></div>
+          <div class="account"><a href="{{ route('profile.edit') }}"><i id="icon" class="fas fa-user"></i></a></div>
           
           <h4 style="font-size: 20px">
             <form method="POST" action="{{ route('logout') }}">
@@ -147,7 +146,16 @@
       </div>
     </div>
   </footer>
+<script>
+    function toggleFavorite(productId) {
+        const heartIcon = document.getElementById('heartIcon_' + productId);
+        heartIcon.style.stroke = 'red';
+        heartIcon.style.fill = 'red';
 
+        // إرسال الفورم تلقائيًا
+        document.getElementById('favoriteForm_' + productId).submit();
+    }
+</script>
   <script src="{{asset('asset/js/script.js')}}"></script>
   <!-- Swiper JS -->
   <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
