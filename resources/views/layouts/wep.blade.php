@@ -67,6 +67,35 @@
     </div>
 
   </nav>
+  @if(session('msg'))
+  <div id="successMessage" 
+       style="
+         background-color: #d4edda;
+         color: #155724;
+         border: 1px solid #c3e6cb;
+         padding: 12px 20px;
+         border-radius: 6px;
+         font-size: 15px;
+         margin-bottom: 15px;
+         text-align: center;
+         position: relative;
+         transition: opacity 0.5s ease;
+       ">
+    {{ session('msg') }}
+  </div>
+
+  <script>
+    // إخفاء الرسالة بعد 3 ثواني
+    setTimeout(function() {
+      const msg = document.getElementById('successMessage');
+      if (msg) {
+        msg.style.opacity = '0';
+        setTimeout(() => msg.style.display = 'none', 500);
+      }
+    }, 3000);
+  </script>
+@endif
+
   <!-- <span class="hamburger">
     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
       class="w-6 h-6">

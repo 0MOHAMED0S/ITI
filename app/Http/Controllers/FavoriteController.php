@@ -21,7 +21,7 @@ class FavoriteController extends Controller
             ]);
         }
 
-        return back()->with('success', 'Added to favorites!');
+        return back()->with('msg', 'Added to favorites!');
     }
 
     // Show favorites
@@ -35,6 +35,29 @@ class FavoriteController extends Controller
     public function remove($id)
     {
         Favorite::where('id', $id)->where('user_id', Auth::id())->delete();
-        return back()->with('success', 'Removed from favorites!');
+        return back()->with('msg', 'Removed from favorites!');
     }
+    
+public function toggle($productId)
+{
+    $userId = auth()->id();
+
+    $favorite = Favorite::where('user_id', $userId)
+                ->where('product_id', $productId)
+                ->first();
+
+    if ($favorite) {
+        $favorite->delete();
+        return back()->with('msg', 'Removed from favorites');
+    }
+
+    Favorite::create([
+        'user_id' => $userId,
+        'product_id' => $productId,
+    ]);
+
+    return back()->with('msg', 'Added to favorites');
+}
+
+
 }

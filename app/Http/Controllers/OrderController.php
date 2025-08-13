@@ -14,7 +14,7 @@ class OrderController extends Controller
         $cart = Cart::with('product')->where('user_id', Auth::id())->get();
 
         if ($cart->isEmpty()) {
-            return redirect()->route('cart')->with('error', 'Cart is empty');
+            return redirect()->route('cart')->with('msg', 'Cart is empty');
         }
 
         $total = 0;
@@ -32,7 +32,7 @@ class OrderController extends Controller
         // Clear the cart
         Cart::where('user_id', Auth::id())->delete();
 
-        return redirect()->route('order')->with('success', 'Order placed successfully!');
+        return redirect()->route('order')->with('msg', 'Order placed successfully!');
     }
 
     // List all orders for the logged-in user
@@ -50,7 +50,7 @@ public function destroy($id)
 {
     $order = Order::findOrFail($id);
     $order->delete();
-    return redirect()->route('admin.orders')->with('success', 'Order deleted successfully!');
+    return redirect()->route('admin.orders')->with('msg', 'Order deleted successfully!');
 }
 
 }

@@ -56,18 +56,30 @@
                 <a href="{{ route('show.p', $Product->id) }}"><img src="{{asset('storage/Product/'.$Product->image)}}" alt="" class="card_img" /></a>
                 <div class="card_tag">-40%</div>
                 <div class="card_top_icons">
-               <form action="{{ route('favorites.add', $Product->id) }}" method="POST" id="favoriteForm_{{ $Product->id }}">
-               @csrf
-                 <button type="button" onclick="toggleFavorite({{ $Product->id }})" style="background: none; border: none; padding: 0;">
-                     <svg xmlns="http://www.w3.org/2000/svg" fill="none"
-                         viewBox="0 0 24 24" stroke-width="1.5"
-                         stroke="currentColor" id="heartIcon_{{ $Product->id }}"
-                         style="width: 30px; height: 30px; cursor: pointer; transition: 0.3s;">
-                         <path stroke-linecap="round" stroke-linejoin="round"
-                             d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
-                     </svg>
-                 </button>
-              </form>
+@auth
+    @php
+        $isFavorite = \App\Models\Favorite::where('user_id', auth()->id())
+                        ->where('product_id', $Product->id)
+                        ->exists();
+    @endphp
+
+    <form action="{{ route('favorites.toggle', $Product->id) }}" method="POST" class="d-inline">
+        @csrf
+        <button type="submit" 
+                class="border-0 bg-transparent p-0" 
+                aria-label="Toggle favorite"
+                style="cursor: pointer; outline: none;">
+            <i class="fa {{ $isFavorite ? 'fa-heart' : 'fa-heart-o' }}" 
+               style="
+                    font-size: 20px; 
+                    color: {{ $isFavorite ? '#dc3545' : '#6c757d' }};
+                    transition: color 0.3s ease;
+               ">
+            </i>
+        </button>
+    </form>
+@endauth
+
                 </div>
               </div>
               <div class="card_body">
@@ -82,10 +94,35 @@
                   <p class="card_rating_numbers">(88)</p>
                 </div>
 
-                <form action="{{ route('cart.add', $Product->id) }}" method="POST">
+                {{-- <form action="{{ route('cart.add', $Product->id) }}" method="POST">
                 @csrf
                 <button type="submit" class="add_to_cart">Add to Cart</button>
-                </form>
+                </form> --}}
+
+               @if(auth()->check())
+  @php
+      $inCart = \App\Models\Cart::where('user_id', auth()->id())
+                  ->where('product_id', $Product->id)
+                  ->exists();
+  @endphp
+
+  <a href="{{ route('cart.toggle', $Product->id) }}" 
+     style="
+        display: inline-block;
+        font-size: 13px;
+        padding: 8px 16px;
+        border-radius: 25px;
+        text-decoration: none;
+        color: #fff;
+        background-color: {{ $inCart ? '#dc3545' : '#28a745' }};
+        transition: 0.3s;
+     "
+     onmouseover="this.style.backgroundColor='{{ $inCart ? '#c82333' : '#218838' }}'"
+     onmouseout="this.style.backgroundColor='{{ $inCart ? '#dc3545' : '#28a745' }}'"
+  >
+      {{ $inCart ? 'Remove from Cart' : 'Add to Cart' }}
+  </a>
+@endif
 
               </div>
             </div>
@@ -173,18 +210,30 @@
                 <a href="{{ route('show.p', $Product->id) }}"><img src="{{asset('storage/Product/'.$Product->image)}}" alt="" class="card_img" /></a>
                 <div class="card_tag">-40%</div>
                 <div class="card_top_icons">
-               <form action="{{ route('favorites.add', $Product->id) }}" method="POST" id="favoriteForm_{{ $Product->id }}">
-               @csrf
-                 <button type="button" onclick="toggleFavorite({{ $Product->id }})" style="background: none; border: none; padding: 0;">
-                     <svg xmlns="http://www.w3.org/2000/svg" fill="none"
-                         viewBox="0 0 24 24" stroke-width="1.5"
-                         stroke="currentColor" id="heartIcon_{{ $Product->id }}"
-                         style="width: 30px; height: 30px; cursor: pointer; transition: 0.3s;">
-                         <path stroke-linecap="round" stroke-linejoin="round"
-                             d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
-                     </svg>
-                 </button>
-              </form>
+@auth
+    @php
+        $isFavorite = \App\Models\Favorite::where('user_id', auth()->id())
+                        ->where('product_id', $Product->id)
+                        ->exists();
+    @endphp
+
+    <form action="{{ route('favorites.toggle', $Product->id) }}" method="POST" class="d-inline">
+        @csrf
+        <button type="submit" 
+                class="border-0 bg-transparent p-0" 
+                aria-label="Toggle favorite"
+                style="cursor: pointer; outline: none;">
+            <i class="fa {{ $isFavorite ? 'fa-heart' : 'fa-heart-o' }}" 
+               style="
+                    font-size: 20px; 
+                    color: {{ $isFavorite ? '#dc3545' : '#6c757d' }};
+                    transition: color 0.3s ease;
+               ">
+            </i>
+        </button>
+    </form>
+@endauth
+
                 </div>
               </div>
               <div class="card_body">
@@ -199,10 +248,30 @@
                   <p class="card_rating_numbers">(88)</p>
                 </div>
 
-                <form action="{{ route('cart.add', $Product->id) }}" method="POST">
-                @csrf
-                <button type="submit" class="add_to_cart">Add to Cart</button>
-                </form>
+               @if(auth()->check())
+  @php
+      $inCart = \App\Models\Cart::where('user_id', auth()->id())
+                  ->where('product_id', $Product->id)
+                  ->exists();
+  @endphp
+
+  <a href="{{ route('cart.toggle', $Product->id) }}" 
+     style="
+        display: inline-block;
+        font-size: 13px;
+        padding: 8px 16px;
+        border-radius: 25px;
+        text-decoration: none;
+        color: #fff;
+        background-color: {{ $inCart ? '#dc3545' : '#28a745' }};
+        transition: 0.3s;
+     "
+     onmouseover="this.style.backgroundColor='{{ $inCart ? '#c82333' : '#218838' }}'"
+     onmouseout="this.style.backgroundColor='{{ $inCart ? '#dc3545' : '#28a745' }}'"
+  >
+      {{ $inCart ? 'Remove from Cart' : 'Add to Cart' }}
+  </a>
+@endif
 
               </div>
             </div>
@@ -255,7 +324,7 @@
                 <a href="{{ route('show.p', $Product->id) }}"><img src="{{asset('storage/Product/'.$Product->image)}}" alt="" class="card_img" /></a>
                 <div class="card_tag">-40%</div>
                 <div class="card_top_icons">
-               <form action="{{ route('favorites.add', $Product->id) }}" method="POST" id="favoriteForm_{{ $Product->id }}">
+               {{-- <form action="{{ route('favorites.add', $Product->id) }}" method="POST" id="favoriteForm_{{ $Product->id }}">
                @csrf
                  <button type="button" onclick="toggleFavorite({{ $Product->id }})" style="background: none; border: none; padding: 0;">
                      <svg xmlns="http://www.w3.org/2000/svg" fill="none"
@@ -266,7 +335,31 @@
                              d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
                      </svg>
                  </button>
-              </form>
+              </form> --}}
+@auth
+    @php
+        $isFavorite = \App\Models\Favorite::where('user_id', auth()->id())
+                        ->where('product_id', $Product->id)
+                        ->exists();
+    @endphp
+
+    <form action="{{ route('favorites.toggle', $Product->id) }}" method="POST" class="d-inline">
+        @csrf
+        <button type="submit" 
+                class="border-0 bg-transparent p-0" 
+                aria-label="Toggle favorite"
+                style="cursor: pointer; outline: none;">
+            <i class="fa {{ $isFavorite ? 'fa-heart' : 'fa-heart-o' }}" 
+               style="
+                    font-size: 20px; 
+                    color: {{ $isFavorite ? '#dc3545' : '#6c757d' }};
+                    transition: color 0.3s ease;
+               ">
+            </i>
+        </button>
+    </form>
+@endauth
+
                 </div>
               </div>
               <div class="card_body">
@@ -281,10 +374,30 @@
                   <p class="card_rating_numbers">(88)</p>
                 </div>
 
-                <form action="{{ route('cart.add', $Product->id) }}" method="POST">
-                @csrf
-                <button type="submit" class="add_to_cart">Add to Cart</button>
-                </form>
+               @if(auth()->check())
+  @php
+      $inCart = \App\Models\Cart::where('user_id', auth()->id())
+                  ->where('product_id', $Product->id)
+                  ->exists();
+  @endphp
+
+  <a href="{{ route('cart.toggle', $Product->id) }}" 
+     style="
+        display: inline-block;
+        font-size: 13px;
+        padding: 8px 16px;
+        border-radius: 25px;
+        text-decoration: none;
+        color: #fff;
+        background-color: {{ $inCart ? '#dc3545' : '#28a745' }};
+        transition: 0.3s;
+     "
+     onmouseover="this.style.backgroundColor='{{ $inCart ? '#c82333' : '#218838' }}'"
+     onmouseout="this.style.backgroundColor='{{ $inCart ? '#dc3545' : '#28a745' }}'"
+  >
+      {{ $inCart ? 'Remove from Cart' : 'Add to Cart' }}
+  </a>
+@endif
 
               </div>
             </div>

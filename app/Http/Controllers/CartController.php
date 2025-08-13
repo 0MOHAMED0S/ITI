@@ -29,7 +29,7 @@ class CartController extends Controller
             ]);
         }
 
-        return redirect()->back()->with('success', 'Product added to cart!');
+        return redirect()->back()->with('msg', 'Product added to cart!');
     }
 
     // Show cart
@@ -48,7 +48,7 @@ class CartController extends Controller
             ->where('user_id', Auth::id())
             ->delete();
 
-        return redirect()->route('cart')->with('success', 'Item removed from cart!');
+        return redirect()->route('cart')->with('msg', 'Item removed from cart!');
     }
 
     // Update quantity
@@ -63,6 +63,31 @@ class CartController extends Controller
         $cartItem->quantity = $request->quantity;
         $cartItem->save();
 
-        return redirect()->route('cart')->with('success', 'Cart updated!');
+        return redirect()->route('cart')->with('msg', 'Cart updated!');
     }
+
+
+    public function toggleCart($productId)
+{
+    $userId = auth()->id();
+
+    $cartItem = Cart::where('user_id', $userId)
+                    ->where('product_id', $productId)
+                    ->first();
+
+    if ($cartItem) {
+        $cartItem->delete();
+        $message = 'Product removed from cart';
+    } else {
+        Cart::create([
+            'user_id' => $userId,
+            'product_id' => $productId,
+            'quantity' => 1
+        ]);
+        $message = 'Product added to cart';
+    }
+
+    return redirect()->back()->with('msg',$message);
+}
+
 }
