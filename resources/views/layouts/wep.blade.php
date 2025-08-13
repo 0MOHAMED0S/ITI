@@ -40,7 +40,7 @@
           <li><a href="{{ route('home') }}"><h2>Home</h2></a></li>
           <li><a href="{{ route('contact') }}"><h2>contact</h2></a></li>
           <li><a href="{{ route('about') }}"><h2>About</h2></a></li>
-          {{-- <li><a href="create.html"><h2>Sign Up</h2></a></li> --}}
+          <li><a href="{{ route('order') }}"><h2> Order</h2></a></li>
         </ul>
       </div>
       <div class="items">
@@ -51,14 +51,16 @@
         <div class="items-icons">
           <div class="wishlist"><a href="wishlist.html"><i id="icon" class="fa fa-heart-o"></i></a></div>
           <div class="cart"><a href="{{route('cart') }}"><i id="icon" class="fa fa-shopping-cart"></i></a></div>
-          <div class="account"><a href="Account.html"><i id="icon" class="fas fa-user"></i></a></div>
+          <div class="account"><a href="{{ route('profile.edit') }}"><i id="icon" class="fas fa-user">
+            
+          </i></a></div>
+          
           <h4 style="font-size: 20px">
             <form method="POST" action="{{ route('logout') }}">
               @csrf
-              <x-responsive-nav-link :href="route('logout')"
-              onclick="event.preventDefault();
-                this.closest('form').submit();"> {{ __('LogOut') }}
-                      </x-responsive-nav-link>
+              <x-responsive-nav-link :href="route('logout')" onclick="event.preventDefault();this.closest('form').submit();"> 
+                {{ __('LogOut') }}
+                </x-responsive-nav-link>
                     </form>
                   </h4>
               </div>

@@ -63,6 +63,11 @@
                         
 
                         <tr>
+                            <th class='w-25 bg-dark text-light'>Category</th>
+                            <td>{{ $Product->Categorie->name ?? 'No Category' }}</td>
+                        </tr>
+                        
+                        <tr>
                             <th class='w-25 bg-dark text-light'>Description</th>
                             <td>{{ $Product->description }}</td>
                         </tr>

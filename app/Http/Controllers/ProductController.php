@@ -10,18 +10,28 @@ class ProductController extends Controller
 {
     
     public function Products(){
-        $Products = Product::get();
+        $Products = Product::with(['Categorie:id,name'])->get();
         return view('dashboard.product.allproduct',compact('Products'));
     }  
-    public function allproducts(){
+    
+    public function allproduct(){
         $Products = Product::get();
-        return view('wepsite.index',compact('Products'));
+        return view('wepsite.product.all_product',compact('Products'));
+    }  
+    
+    public function product_categorie(){
+        $Products = Product::get();
+        $Categories = Categorie::get();
+        return view('wepsite.index',compact('Products','Categories'));
     }  
 
-
+    public function details($id){
+        $Product = Product::with('Categorie')->findOrFail($id);
+        return view('wepsite.product.details',compact('Product')); 
+    }
 
     public function show($id){
-        $Product = Product::findOrFail($id);
+        $Product = Product::with('Categorie')->findOrFail($id);
         return view('dashboard.product.product_actions.details',compact('Product')); 
     }
     

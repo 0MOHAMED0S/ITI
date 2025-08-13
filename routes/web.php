@@ -11,7 +11,10 @@ use Illuminate\Support\Facades\Route;
 
 
       Route::get('/',function(){return view('welcome');})->name('dash');
-      Route::get('/home', [ProductController::class,'allproducts'])->name('home');
+      Route::get('/home', [ProductController::class,'product_categorie'])->name('home');
+      Route::get('/show/{id}', [ProductController::class,'details'])->name('show.p');
+      Route::get('/allproduct', [ProductController::class,'allproduct'])->name('allproduct');
+
       Route::get('/contact',function(){
       return view('wepsite.contact');
       })->name('contact');
@@ -19,9 +22,9 @@ use Illuminate\Support\Facades\Route;
       return view('wepsite.about');
       })->name('about');
       
-      Route::get('/allproduct',function(){
-      return view('wepsite.product.product');
-      })->name('product');
+      // Route::get('/allproduct',function(){
+      // return view('wepsite.product.product');
+      // })->name('product');
      
       
       Route::post('/cart/add/{id}', [CartController::class, 'add'])->name('cart.add');
@@ -33,9 +36,9 @@ use Illuminate\Support\Facades\Route;
       Route::post('/checkout', [OrderController::class, 'checkout'])->name('order.checkout');
       Route::get('/order', [OrderController::class, 'index'])->name('order');
             
-            Route::get('/check_out',function(){
-            return view('wepsite.product.check_out');
-            })->name('check_out');
+      // Route::get('/account',function(){
+      // return view('wepsite.Account');
+      // })->name('account');
 
 
 

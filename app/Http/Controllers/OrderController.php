@@ -32,7 +32,7 @@ class OrderController extends Controller
         // Clear the cart
         Cart::where('user_id', Auth::id())->delete();
 
-        return redirect()->route('product')->with('success', 'Order placed successfully!');
+        return redirect()->route('order')->with('success', 'Order placed successfully!');
     }
 
     // List all orders for the logged-in user

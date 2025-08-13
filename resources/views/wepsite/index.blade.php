@@ -53,7 +53,7 @@
           <div class="swiper-slide">
             <div class="card">
               <div class="card_top">
-                <a href="product.html"><img src="{{asset('storage/Product/'.$Product->image)}}" alt="" class="card_img" /></a>
+                <a href="{{ route('show.p', $Product->id) }}"><img src="{{asset('storage/Product/'.$Product->image)}}" alt="" class="card_img" /></a>
                 <div class="card_tag">-40%</div>
                 <div class="card_top_icons">
                   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
@@ -61,13 +61,7 @@
                     <path stroke-linecap="round" stroke-linejoin="round"
                       d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
                   </svg>
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                    stroke="currentColor" class="card_top_icon">
-                    <path stroke-linecap="round" stroke-linejoin="round"
-                      d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" />
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                  </svg>
-                  
+
                 </div>
               </div>
               <div class="card_body">
@@ -98,7 +92,7 @@
 
 
       <div class="container_btn">
-        <a href="ViewAllProduct.html" class="container_btn_a">VIEW ALL PRODUCTS</a>
+        <a href="{{ route('allproduct') }}" class="container_btn_a">VIEW ALL PRODUCTS</a>
       </div>
     </div>
   </section>
@@ -112,15 +106,23 @@
         <h3 class="section_title">Browse by Category</h3>
       </div>
       <div class="categories">
+        
+         @foreach( $Categories as $Categorie )
+        <div class="category">
+          {{-- <img src="{{asset('asset/image/icons/computer.png')}}" alt="" class="category_icon" /> --}}
+          <p class="category_name">{{ $Categorie->name }}</p>
+        </div>
+        @endforeach
+                        
+
+
+          {{-- 
+
         <div class="category">
           <img src="{{asset('asset/image/icons/camera.png')}}" alt="" class="category_icon" />
           <p class="category_name">Cameras</p>
         </div>
-        
-        <div class="category">
-          <img src="{{asset('asset/image/icons/computer.png')}}" alt="" class="category_icon" />
-          <p class="category_name">Computers</p>
-        </div>
+
         <div class="category">
           <img src="{{asset('asset/image/icons/gaming.png')}}" alt="" class="category_icon" />
           <p class="category_name">Gaming</p>
@@ -136,7 +138,7 @@
         <div class="category">
           <img src="{{asset('asset/image/icons/watch.png')}}" alt="" class="category_icon" />
           <p class="category_name">Watches</p>
-        </div>
+        </div> --}}
       </div>
     </div>
   </section>
@@ -200,7 +202,7 @@
       </div>
 
       <div class="container_btn">
-        <a href="#" class="container_btn_a">VIEW ALL PRODUCTS</a>
+        <a href="{{ route('allproduct') }}" class="container_btn_a">VIEW ALL PRODUCTS</a>
       </div>
     </div>
   </section>
@@ -282,7 +284,7 @@
           
         </div>
         <div class="container_btn">
-          <a href="#" class="container_btn_a">VIEW ALL PRODUCTS</a>
+          <a href="{{ route('allproduct') }}" class="container_btn_a">VIEW ALL PRODUCTS</a>
         </div>
   </section>
 
@@ -303,7 +305,7 @@
             <p class="gallery_item_p">
               Lorem ipsum dolor sit amet consectetur adipisicing.
             </p>
-            <a href="index.html#" class="gallery_item_link">SHOP NOW</a>
+            <a href="#" class="gallery_item_link">SHOP NOW</a>
           </div>
         </div>
 
@@ -314,7 +316,7 @@
             <p class="gallery_item_p">
               Lorem ipsum dolor sit amet consectetur adipisicing.
             </p>
-            <a href="index.html#" class="gallery_item_link">SHOP NOW</a>
+            <a href="#" class="gallery_item_link">SHOP NOW</a>
           </div>
         </div>
 
@@ -325,7 +327,7 @@
             <p class="gallery_item_p">
               Lorem ipsum dolor sit amet consectetur adipisicing.
             </p>
-            <a href="index.html#" class="gallery_item_link">SHOP NOW</a>
+            <a href="#" class="gallery_item_link">SHOP NOW</a>
           </div>
         </div>
 
@@ -337,7 +339,7 @@
             <p class="gallery_item_p">
               Lorem ipsum dolor sit amet consectetur adipisicing.
             </p>
-            <a href="index.html#" class="gallery_item_link">SHOP NOW</a>
+            <a href="#" class="gallery_item_link">SHOP NOW</a>
           </div>
         </div>
 

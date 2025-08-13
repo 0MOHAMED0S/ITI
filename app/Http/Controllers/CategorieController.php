@@ -12,10 +12,9 @@ class CategorieController extends Controller
 
     public function Categorie(){
     
-
         $Categories = Categorie::get();
         return view('dashboard.categorie.allcategorie',compact('Categories'));
-    }  
+    }   
 
 
             
