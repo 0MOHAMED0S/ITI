@@ -1,209 +1,158 @@
-@extends('Layouts.wep')
+@extends('layouts.wep')
 
 @section('content')
 
 <style>
-/* ===== Scoped Swiper Section Styles ===== */
-.product-slider-section {
-  width: 100%;
-  padding: 50px 0;
-  background-color: #f4f6f8;
+/* ===== Favorites Page Style ===== */
+body {
+  background-color: #f6f6f6;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-.product-slider-title {
+.container h2 {
   text-align: center;
-  font-size: 24px;
-  font-weight: bold;
+  margin: 40px 0 30px;
+  font-weight: 700;
+  font-size: 28px;
   color: #333;
-  margin-bottom: 30px;
+}
+
+.favorites-flex {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  justify-content: center;
 }
 
 /* ===== Product Card ===== */
-.product-slide-card {
-  background: #ffffff;
-  border-radius: 16px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-  overflow: hidden;
+.product-card {
   width: 240px;
-  transition: 0.3s ease;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  position: relative;
-}
-
-.product-slide-card:hover {
-  transform: translateY(-6px);
-}
-
-.product-card-top {
-  position: relative;
-}
-
-.product-card-img {
-  width: 100%;
-  height: 190px;
-  object-fit: cover;
-  border-top-left-radius: 16px;
-  border-top-right-radius: 16px;
-}
-
-/* Discount Label */
-.product-discount-tag {
-  position: absolute;
-  top: 10px;
-  left: 10px;
-  background-color: #ff4b5c;
-  color: white;
-  font-size: 13px;
-  padding: 4px 10px;
-  border-radius: 20px;
-  font-weight: 600;
-}
-
-/* Favorite Icon */
-.product-fav-icon {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-}
-
-.product-fav-icon svg {
-  width: 26px;
-  height: 26px;
-  color: #ff4b5c;
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-.product-fav-icon svg:hover {
-  transform: scale(1.15);
-}
-
-/* Card Body */
-.product-card-body {
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+  overflow: hidden;
   padding: 15px;
   text-align: center;
+  transition: 0.3s ease;
+  position: relative;
 }
 
-.product-name {
-  font-size: 15px;
+.product-card:hover {
+  transform: translateY(-4px);
+}
+
+.product-card img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+/* ===== Product Info ===== */
+.product-title {
+  font-size: 16px;
   font-weight: 600;
-  margin-bottom: 8px;
-  color: #333;
-  height: 40px;
-  overflow: hidden;
+  margin: 12px 0 6px;
+  color: #222;
+  min-height: 38px;
 }
 
 .product-price {
-  font-size: 14px;
+  font-size: 15px;
   color: #28a745;
   font-weight: bold;
   margin-bottom: 12px;
 }
 
-/* Button */
-.product-cart-btn {
+/* ===== Action Buttons ===== */
+.product-actions {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.product-actions button {
+  font-size: 13px;
+  padding: 7px 14px;
+  border-radius: 30px;
+  border: none;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.btn-remove {
   background-color: #ff4b5c;
   color: white;
-  border: none;
-  padding: 8px 18px;
-  border-radius: 25px;
-  font-size: 13px;
-  cursor: pointer;
-  transition: background 0.3s ease;
-  margin-bottom: 10px;
 }
 
-.product-cart-btn:hover {
-  background-color: #e84352;
+.btn-remove:hover {
+  background-color: #e43d4f;
 }
 
-/* Responsive */
+.btn-cart {
+  background-color: #007bff;
+  color: white;
+}
+
+.btn-cart:hover {
+  background-color: #0062cc;
+}
+
+/* ===== Empty Favorites ===== */
+.alert-info {
+  background-color: #e7f3ff;
+  border: 1px solid #bee5eb;
+  color: #31708f;
+  font-size: 16px;
+  padding: 16px;
+  border-radius: 8px;
+  margin-top: 40px;
+}
+
+/* ===== Responsive ===== */
 @media (max-width: 768px) {
-  .product-slide-card {
+  .product-card {
     width: 90%;
-  }
-}
-
-@media (min-width: 769px) and (max-width: 1024px) {
-  .product-slide-card {
-    width: 200px;
   }
 }
 </style>
 
-<!-- Swiper Product Section -->
-<div class="product-slider-section">
-  <h2 class="product-slider-title">🔥 Featured Products</h2>
+<div class="container">
+    <h2>My Favorites</h2>
 
-  <div class="swiper mySwiper">
-    <div class="swiper-wrapper">
-      @foreach ($Products as $Product)
-        <div class="swiper-slide">
-          <div class="product-slide-card">
-            <div class="product-card-top">
-              <a href="{{ route('show.p', $Product->id) }}">
-                <img src="{{ asset('storage/Product/'.$Product->image) }}" alt="{{ $Product->name }}" class="product-card-img" />
-              </a>
-
-              <div class="product-discount-tag">-40%</div>
-
-              <div class="product-fav-icon">
-                <form action="{{ route('favorites.add', $Product->id) }}" method="POST" id="favoriteForm_{{ $Product->id }}">
-                  @csrf
-                  <button type="button" onclick="toggleFavorite({{ $Product->id }})" style="background: none; border: none;">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none"
-                         viewBox="0 0 24 24" stroke-width="1.5"
-                         stroke="currentColor" id="heartIcon_{{ $Product->id }}">
-                      <path stroke-linecap="round" stroke-linejoin="round"
-                            d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
-                    </svg>
-                  </button>
-                </form>
-              </div>
-            </div>
-
-            <div class="product-card-body">
-              <h3 class="product-name">{{ $Product->name }}</h3>
-              <p class="product-price">{{ $Product->price }} EGP</p>
-
-              <form action="{{ route('cart.add', $Product->id) }}" method="POST">
-                @csrf
-                <button type="submit" class="product-cart-btn">Add to Cart</button>
-              </form>
-            </div>
-          </div>
+    @if($favorites->isEmpty())
+        <div class="alert alert-info text-center">
+            😔 You have no favorite products yet.<br>
+            Start exploring and add some!
         </div>
-      @endforeach
-    </div>
-  </div>
+    @else
+        <div class="favorites-flex">
+            @foreach($favorites as $favorite)
+                <div class="product-card">
+                    @if($favorite->product->image ?? false)
+                        <img src="{{ asset('storage/Product/' . $favorite->product->image) }}" 
+                             alt="{{ $favorite->product->name }}">
+                    @endif
+
+                    <div class="product-title">{{ $favorite->product->name }}</div>
+                    <div class="product-price">{{ $favorite->product->price }} EGP</div>
+
+                    <div class="product-actions">
+                        <form action="{{ route('favorites.remove', $favorite->id) }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-remove">Remove</button>
+                        </form>
+
+                        <form action="{{ route('cart.add', $favorite->product->id) }}" method="POST">
+                            @csrf
+                            <button type="submit" class="btn btn-cart">Add to Cart</button>
+                        </form>
+                    </div>
+                </div>
+            @endforeach
+        </div>
+    @endif
 </div>
-
-<!-- Swiper Scripts -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css" />
-<script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
-<script>
-  var swiper = new Swiper(".mySwiper", {
-    slidesPerView: 4,
-    spaceBetween: 20,
-    loop: true,
-    autoplay: {
-      delay: 3000,
-      disableOnInteraction: false,
-    },
-    breakpoints: {
-      1024: { slidesPerView: 4 },
-      768: { slidesPerView: 2 },
-      480: { slidesPerView: 1 }
-    }
-  });
-
-  function toggleFavorite(productId) {
-    const form = document.getElementById(`favoriteForm_${productId}`);
-    const icon = document.getElementById(`heartIcon_${productId}`);
-    form.submit();
-    icon.style.fill = "#ff4b5c";
-  }
-</script>
 @endsection
