@@ -136,7 +136,7 @@
 <div class="product-slider-section">
   <h2 class="product-slider-title">All Products</h2>
 
-  <div class="swiper mySwiper">
+  <div class="swiperr mySwiper">
     <div class="swiper-wrapper">
       @foreach ($Products as $Product)
         <div class="swiper-slide">

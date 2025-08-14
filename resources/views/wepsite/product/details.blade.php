@@ -88,11 +88,15 @@
     <!-- بيانات المنتج -->
     <div class="product-info-full">
         <h1>{{ $Product->name }}</h1>
+        @if(auth()->user()->role==1)
         <div class="info-item"><span class="info-label">ID:</span> <span class="info-value">{{ $Product->id }}</span></div>
+        @endif
         <div class="info-item"><span class="info-label">Price:</span> <span class="info-value">{{ $Product->price }}</span></div>
         <div class="info-item"><span class="info-label">Category:</span> <span class="info-value">{{ $Product->Categorie->name ?? 'No Category' }}</span></div>
+        @if(auth()->user()->role==1)
         <div class="info-item"><span class="info-label">Created:</span> <span class="info-value">{{ $Product->created_at ?? 'No Data' }}</span></div>
         <div class="info-item"><span class="info-label">Updated:</span> <span class="info-value">{{ $Product->updated_at ?? 'No Data' }}</span></div>
+        @endif
         <p class="product-description">{{ $Product->description }}</p>
         <a href="{{ url()->previous() }}" class="btn-back">⬅ Back</a>
 

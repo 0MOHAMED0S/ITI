@@ -4,7 +4,7 @@
 
     <div class="container header_container">
       <article class="header_filter">
-        <a href="#" class="header_filter_link">Woman’s Fashion</a>
+        {{-- <a href="#" class="header_filter_link">Woman’s Fashion</a>
         <a href="#" class="header_filter_link">Men’s Fashion</a>
         <a href="#" class="header_filter_link">Electronics</a>
         <a href="#" class="header_filter_link">Home & Lifestyle</a>
@@ -12,14 +12,19 @@
         <a href="#" class="header_filter_link">Sports & Outdoor</a>
         <a href="#" class="header_filter_link">Baby’s & Toys</a>
         <a href="#" class="header_filter_link">Groceries & Pets</a>
-        <a href="#" class="header_filter_link">Health & Beauty</a>
+        <a href="#" class="header_filter_link">Health & Beauty</a> --}}
+        @foreach($Categories as $category)
+        <a href="{{ route('categorie.details', $category->id)}}" class="header_filter_link"> {{$category->name}}</a>
+        @endforeach
       </article>
       <article class="swiper bannerSwiper">
         <div class="swiper-wrapper">
+          @foreach ($Products as $Product )
           <div class="swiper-slide">
-            <img src="{{ asset('asset/image/header.png')}}" alt="" class="header_img" />
+            <img src="{{asset('storage/Product/'.$Product->image)}}" alt="" class="header_img" />
           </div>
-          <div class="swiper-slide">
+          @endforeach
+          {{-- <div class="swiper-slide">
             <img src="{{asset('asset/image/header.png')}}" alt="" class="header_img" />
           </div>
           <div class="swiper-slide">
@@ -27,7 +32,7 @@
           </div>
           <div class="swiper-slide">
             <img src="{{asset('asset/image/header.png')}}" alt="" class="header_img" />
-          </div>
+          </div> --}}
         </div>
         <div class="swiper-pagination"></div>
       </article>
@@ -46,7 +51,7 @@
       </div>
       <!-- Swiper -->
 
-      <div class="swiper mySwiper">
+      <div class="swiperr mySwiper">
         <div class="swiper-wrapper">
                         
           @foreach ($Products as $Product )
@@ -201,7 +206,7 @@
         <p id="demo"></p>
       </div>
       <!-- Swiper -->
-      <div class="swiper mySwiper">
+      <div class="swiperr mySwiper">
         <div class="swiper-wrapper">
           @foreach ($Products as $Product )
           <div class="swiper-slide">

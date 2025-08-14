@@ -136,11 +136,11 @@
 @auth
     @php
         $isFavorite = \App\Models\Favorite::where('user_id', auth()->id())
-                        ->where('product_id', $Product->id)
+                        ->where('product_id', $product->id)
                         ->exists();
     @endphp
 
-    <form action="{{ route('favorites.toggle', $Product->id) }}" method="POST" class="d-inline">
+    <form action="{{ route('favorites.toggle', $product->id) }}" method="POST" class="d-inline">
         @csrf
         <button type="submit" 
                 class="border-0 bg-transparent p-0" 
