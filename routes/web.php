@@ -57,7 +57,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('admin')->prefix('/dashboard')->group(function(){
 
-Route::get('/', function () {return view('dashboard');})->middleware(['auth', 'admin'])->name('dashboard');
+Route::get('/', [ProductController::class,'dashboard'])->middleware(['auth', 'admin'])->name('dashboard');
 
 Route::prefix('/admin')->name('admin.')->group(function(){
 

@@ -78,7 +78,8 @@ class CartController extends Controller
     if ($cartItem) {
         $cartItem->delete();
         $message = 'Product removed from cart';
-    } else {
+    } 
+    else {
         Cart::create([
             'user_id' => $userId,
             'product_id' => $productId,

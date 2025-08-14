@@ -5,6 +5,7 @@ use App\Http\Requests\ProductRequest;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Categorie;
+use App\Models\order;
 
 class ProductController extends Controller
 {
@@ -24,6 +25,15 @@ class ProductController extends Controller
         $Categories = Categorie::get();
         return view('wepsite.index',compact('Products','Categories'));
     }  
+
+    public function dashboard()
+{
+    $ordersCount = order::count();
+    $productsCount = Product::count();
+    $categoriesCount = Categorie::count();
+
+    return view('dashboard', compact('ordersCount', 'productsCount', 'categoriesCount'));
+}
 
     public function details($id){
         $Product = Product::with('Categorie')->findOrFail($id);
