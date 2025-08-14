@@ -11,8 +11,8 @@ use Illuminate\Support\Facades\Route;
 
 
 
-      Route::get('/',function(){return view('welcome');})->name('dash');
-      Route::get('/home', [ProductController::class,'product_categorie'])->name('home');
+      // Route::get('/',function(){return view('welcome');})->name('dash');
+      Route::get('/', [ProductController::class,'product_categorie'])->name('home');
       Route::get('/show/{id}', [ProductController::class,'details'])->name('show.p');
       Route::get('/allproduct', [ProductController::class,'allproduct'])->name('allproduct');
       Route::get('/categories/{id}', [CategorieController::class, 'details'])->name('categorie.details');

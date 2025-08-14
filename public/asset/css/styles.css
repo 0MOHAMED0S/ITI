@@ -47,33 +47,7 @@ ul {
     color: black;
 }
 
-/* top_nav */
-.top_nav {
-  width: 100%;
-  height: 4rem;
-  background-color: var(--colo-dark-1);
-}
-.top_nav_container {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.top_nav_wrapper {
-  display: flex;
-  color: var(--colo-white-1);
-}
-.tap_nav_p {
-  font-size: 1.4rem;
-  font-weight: 400;
-}
-.top_nav_link {
-  margin-left: 1rem;
-  font-size: 1.4rem;
-  font-weight: 600;
-  color: var(--colo-white-1);
-}
+
 /* header */
 .header_container {
   width: 100%;

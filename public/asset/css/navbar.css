@@ -1,0 +1,203 @@
+.top_nav {
+  width: 100%;
+  height: 3.5rem;
+  background-color: #000000;
+  border-bottom: 1px solid #eee;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin-bottom: 0;
+}
+
+.top_nav_container {
+  width: 100%;
+  max-width: 1200px;
+  padding: 0 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.top_nav_wrapper {
+  display: flex;
+  color: #e2dddd;
+  font-weight: 500;
+  font-size: 14px;
+  gap: 12px;
+  align-items: center;
+}
+
+.tap_nav_p {
+  font-size: 14px;
+  font-weight: 500;
+  margin: 0;
+  letter-spacing: 0.02em;
+}
+
+.top_nav_link {
+  margin-left: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #ff6f61;
+  text-decoration: none;
+  padding: 6px 18px;
+  border-radius: 20px;
+  border: 1.5px solid #ff6f61;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.top_nav_link:hover {
+  background-color: #ff6f61;
+  color: #fff;
+}
+/* الحاوية الرئيسية للناف */
+.navbar {
+  width: 100%;
+  /* padding: 12px 24px; */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  border-bottom: 1px solid #e4e4e4;
+  background-color: #fff;
+  font-family: Arial, sans-serif;
+  
+}
+
+/* اللوجو على الشمال */
+
+
+
+
+/* القائمة */
+.navbar .menu ul {
+  display: flex;
+  list-style: none;
+  gap: 15px;
+  margin: 0;
+  padding: 0;
+}
+
+/* .navbar .logo b */
+.navbar .menu ul li a 
+{
+  text-decoration: none;
+  font-size: 20px;
+  font-weight: bold;
+  color: #333;
+  /* padding: 5px 8px; */
+  transition: 0.3s;
+}
+
+.navbar .menu ul li a:hover {
+  color: #007BFF;
+}
+
+/* قسم العناصر (البحث + الأيقونات + أزرار الدخول) جنب بعض */
+.navbar .items {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+/* البحث */
+.navbar .search {
+  position: relative;
+}
+
+.navbar .srch {
+  padding: 6px 30px 6px 10px;
+  font-size: 13px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  height: 34px;
+  width: 100px;
+}
+
+.navbar .search i.fa-search {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #666;
+  font-size: 14px;
+}
+
+/* الأيقونات */
+.navbar .icons {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.navbar .icons a i {
+  font-size: 16px;
+  color: #333;
+  transition: 0.2s ease-in-out;
+}
+
+.navbar .icons a i:hover {
+  color: #007BFF;
+}
+
+/* أزرار الدخول */
+.navbar .auth {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.navbar .auth a {
+  font-size: 13px;
+  text-decoration: none;
+  padding: 6px 14px;
+  border: 1px solid #007BFF;
+  border-radius: 4px;
+  color: #007BFF;
+  background-color: transparent;
+  transition: 0.3s ease-in-out;
+  height: 34px;
+  line-height: 20px;
+}
+
+.navbar .auth a:hover {
+  background-color: #007BFF;
+  color: #fff;
+  border-color: #007BFF;
+}
+
+/* نموذج تسجيل الخروج inline */
+.navbar .auth form {
+  display: inline;
+}
+
+.navbar .auth form a {
+  display: inline-block;
+}
+
+/* Responsive */
+
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
+
+  .navbar .menu ul {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .navbar .items {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .navbar .auth {
+    flex-wrap: wrap;
+  }
+}

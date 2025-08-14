@@ -15,6 +15,7 @@
   <link rel="stylesheet" href="{{ asset('asset/css/about.css') }}">
   <link rel="stylesheet" href="{{asset('asset/css/contact.css')}}">
   <link rel="stylesheet" href="{{asset('asset/css/check.css')}}">
+  <link rel="stylesheet" href="{{asset('asset/css/navbar.css')}}">
   <link rel="stylesheet" href="{{asset('asset/css/product.css')}}">
   <link rel="stylesheet" href="{{asset('asset/css/styles.css')}}">
 </head>
@@ -30,41 +31,58 @@
       </div>
     </div>
   </div>
-  <nav>
-    <div class="nav-content">
-      <div class="logo">
-        <h2>Exclusive</h2>
-      </div>
+
+
+
+  <nav class="navbar">
+    
+      {{-- <div class="logo">
+        <b>Exclusive</b>
+      </div> --}}
       <div class="menu">
         <ul>
-          <li><a href="{{ route('home') }}"><h2>Home</h2></a></li>
-          <li><a href="{{ route('allproduct') }}"><h2>All Product</h2></a></li>
-          <li><a href="{{ route('contact') }}"><h2>contact</h2></a></li>
-          <li><a href="{{ route('about') }}"><h2>About</h2></a></li>
-          <li><a href="{{ route('order') }}"><h2> Order</h2></a></li>
+          <li><a href="{{ route('home') }}">Home</a></li>
+          <li><a href="{{ route('allproduct') }}">All Product</a></li>
+          <li><a href="{{ route('contact') }}">contact</a></li>
+          <li><a href="{{ route('about') }}">About</a></li>
+          <li><a href="{{ route('order') }}">My Order</a></li>
         </ul>
       </div>
-      <div class="items">
+ 
         <div class="search">
-          <input class="srch" type="text" placeholder="what are you looking for?">
-          <i id="icon" class="fa fa-search"></i>
+          <input class="srch" type="text" placeholder="search">
+          <i class="fa fa-search"></i>
         </div>
-        <div class="items-icons">
-          <div class="wishlist"><a href="{{route('favorites') }}"><i id="icon" class="fa fa-heart-o"></i></a></div>
-          <div class="cart"><a href="{{route('cart') }}"><i id="icon" class="fa fa-shopping-cart"></i></a></div>
-          <div class="account"><a href="{{ route('profile.edit') }}"><i id="icon" class="fas fa-user"></i></a></div>
-          
-          <h4 style="font-size: 20px">
-            <form method="POST" action="{{ route('logout') }}">
-              @csrf
-              <x-responsive-nav-link :href="route('logout')" onclick="event.preventDefault();this.closest('form').submit();"> 
-                {{ __('LogOut') }}
-                </x-responsive-nav-link>
-                    </form>
-                  </h4>
-              </div>
+
+  <div class="icons">
+    <a href="{{ route('favorites') }}"><i class="fa fa-heart-o"></i></a>
+    <a href="{{ route('cart') }}"><i class="fa fa-shopping-cart"></i></a>
+    <a href="{{ route('profile.edit') }}"><i class="fas fa-user"></i></a>
+  </div>
+
+           <div class="auth">
+            @if (Route::has('login'))
+               
+                @auth
+                    @if(auth()->user()->role==1)
+                      <a href="{{ url('/dashboard') }}">Dashboard</a>
+                    @endif
+                <form method="POST" action="{{ route('logout') }}">
+                @csrf
+                <a href="{{ route('logout')}}"onclick="event.preventDefault();
+                this.closest('form').submit();"> LogOut</a>
+                </form>
+
+                    @else
+                  <a href="{{ route('login') }}">Login </a>
+                    @if (Route::has('register'))
+                  <a href="{{ route('register') }}">
+                   Register
+                  </a>
+                  @endif
+                @endauth
+            @endif
       </div>
-    </div>
 
   </nav>
   @if(session('msg'))
@@ -85,7 +103,7 @@
   </div>
 
   <script>
-    // إخفاء الرسالة بعد 3 ثواني
+  
     setTimeout(function() {
       const msg = document.getElementById('successMessage');
       if (msg) {
